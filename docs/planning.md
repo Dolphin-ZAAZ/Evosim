@@ -65,3 +65,12 @@ Structure:
             reproduce,
             share,
             combine
+
+Options for memory:
+
+Track everything
+1. 320 x 240 = 76 800 positions ~ 9 600 bytes * 2 = 19 200 bytes
+2. 240 x 180 = 43 200 positions ~ 5 400 bytes * 2 = 10 800 bytes
+
+Track only entities
+Cell: byte type, short id = 3 bytes; 
