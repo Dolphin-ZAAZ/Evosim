@@ -6,8 +6,8 @@ typedef signed char int8_t;
 
 using byte = uint8_t;
 
-const short xDefaultSize = 480;
-const short yDefaultSize = 360;
+const short xDefaultSize = 480; // needs to be divisible by 4
+const short yDefaultSize = 360; // needs to be divisible by 4
 
 enum class UniverseSize {
     Small,
@@ -33,8 +33,13 @@ struct UniverseProperties {
     byte sizeResistance = 128;
     byte temperature = 128;
     byte energyDensity = 128;
-    short xSize = xDefaultSize;
-    byte ySize = yDefaultSize;
+    short xSize = xDefaultSize/4;
+    short ySize = yDefaultSize/4;
+};
+
+struct Cell {
+    byte species;
+    short id;
 };
 
 class Universe {
@@ -44,15 +49,23 @@ class Universe {
 
         UniverseProperties properties;
 
-        void tick();
-        void spawnPixel(PixelType type, short x, short y);
+        void tickUniverse();
+        void spawnEnergy(short x, short y);
+        void spawnCell(byte species, short x, short y);
     private:
+        long long tick;
         byte speciesCount;
-        PixelType space[xDefaultSize][yDefaultSize];
+        short activeCells;
+        Cell cells[6000];
+        short space[xDefaultSize/4][yDefaultSize/4];
+        PixelType readFromSpace(short x, short y);
+        void changeSpace(PixelType type, short x, short y);
         void generateUniverse();
+        void initialiseEnergy();
+        void initialiseCells();
         void energyProductionFunction(long time);
         void updatePixel(short x, short y);
-        int noiseFunction(byte seed);
+        byte noiseFunction();
 };
 
 #endif
