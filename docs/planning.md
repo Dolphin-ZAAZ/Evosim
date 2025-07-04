@@ -69,8 +69,30 @@ Structure:
 Options for memory:
 
 Track everything
-1. 320 x 240 = 76 800 positions ~ 9 600 bytes * 2 = 19 200 bytes
 2. 240 x 180 = 43 200 positions ~ 5 400 bytes * 2 = 10 800 bytes
 
 Track only entities
 Cell: byte type, short id = 3 bytes; 
+
+Inputs:
+    position, 2 bytes
+    energy level, 2 byte
+    sense food, 2 byte
+    energy level, 2 byte
+    sense mate, 2 byte
+    energy level, 2 byte
+    sense competition, 2 byte
+    energy level, 2 byte
+
+    Total: 16 bytes ]
+
+Hidden:
+    Basic: 16x12+12+24, 12x8+8+16 8x4+4+8
+              228          120     44         392
+Outputs:
+    up, 1 byte
+    down, 1 byte 
+    left, 1 byte
+    right, 1 byte
+
+    Total: 4 bytes
