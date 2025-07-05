@@ -84,7 +84,7 @@ Inputs:
     sense competition, 2 byte
     energy level, 2 byte
 
-    Total: 16 bytes ]
+    Total: 16 bytes 
 
 Hidden:
     Basic: 16x12+12+24, 12x8+8+16 8x4+4+8
