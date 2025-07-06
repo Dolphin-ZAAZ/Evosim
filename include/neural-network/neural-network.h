@@ -6,59 +6,12 @@ typedef signed char int8_t;
 using byte = uint8_t;
 using sByte = int8_t;
 
-struct Neuron {
-    byte* weights;
-    byte bias;
-    short output;
-
-    Neuron();
-    Neuron(byte* old_weights, byte old_bias) : weights(old_weights), bias(old_bias) {
-        weights = old_weights;
-        bias = old_bias;
-    }
-
-    ~Neuron() {
-        delete[] weights;
-    }
-
-    short activate(int sum) {
-        byte shifted = (sum >> 16) & 0xFF;
-        return shifted;
-    }
-};
-
-struct Layer {
-    Neuron* neurons;
-    byte neuron_count;
-    byte input_count;
-
-    Layer();
-
-    Layer(byte count) : neuron_count(count) {
-        neurons = new Neuron[neuron_count];
-    }
-
-    Layer(Layer& old_layer) : neurons(old_layer.neurons), neuron_count(old_layer.neuron_count), input_count(old_layer.input_count) { }
-
-    ~Layer() {
-        delete[] neurons;
-    }
-
-    void forward(byte* inputs) {
-        for (byte neuron = 0; neuron < neuron_count; neuron++) {
-            int sum = neurons[neuron].bias;
-            for (byte input = 0; input < input_count; input++) {
-                sum += inputs[input] * neurons[neuron].weights[input];
-            }
-            neurons[neuron].output = neurons[neuron].activate(sum);
-        }
-    }
-};
-
 struct Matrix {
     sByte* data;
     byte rows;
     byte columns;
+
+    ~Matrix() { delete[] data; }
 
     Matrix(byte r, byte c) : rows(r), columns(c) {
         data = new sByte[rows * columns];
@@ -67,7 +20,24 @@ struct Matrix {
         }
     }
 
-    ~Matrix() { delete[] data; }
+    Matrix(const Matrix& other) : rows(other.rows), columns(other.columns) {
+        data = new sByte[rows*columns];
+        for (short i = 0; i < rows * columns; i++) {
+            data[i] = other.data[i];
+        }
+    }
+
+    Matrix& operator=(const Matrix& other) {
+        if (this == &other) return *this;
+        delete[] data;
+        rows = other.rows;
+        columns = other.columns;
+        data = new sByte[rows*columns];
+        for (byte i = 0; i < rows * columns; i++) {
+            data[i] = other.data[i];
+        }
+        
+    }
 
     sByte& operator()(byte r, byte c) {
         return data[r * columns + c];
@@ -75,13 +45,27 @@ struct Matrix {
 };
 
 struct Network {
-    byte* layerSizes;
     byte layerCount;
     byte inputs;
+    byte* layerSizes;
     Matrix** weights;
     Matrix** biases;
-
-    Network(byte in, byte sizes, byte* count) :  inputs(in), layerCount(sizes), layerSizes(count) {
+    
+    ~Network() {
+        delete[] layerSizes;
+        for (byte i = 0; i < layerCount; i++) {
+            delete weights[i];
+            delete biases[i];
+        }
+        delete[] weights;
+        delete[] biases;
+    }
+    
+    Network(byte in, byte count, byte* sizes) :  inputs(in), layerCount(count) {
+        layerSizes = new byte[layerCount];
+        for (byte i = 0; i < layerCount; i++) {
+            layerSizes[i] = sizes[i];
+        }
         weights = new Matrix*[layerCount];
         biases = new Matrix*[layerCount];
         weights[0] = new Matrix(inputs, layerSizes[0]);
@@ -92,13 +76,36 @@ struct Network {
         }
     }
 
-    ~Network() {
+    Network(const Network& other) : inputs(other.inputs), layerCount(other.layerCount) {
+        layerSizes = new byte[layerCount];
+        weights = new Matrix*[layerCount];
+        biases = new Matrix*[layerCount];
+        for (byte i = 0; i < layerCount; i++) {
+            layerSizes[i] = other.layerSizes[i];
+            weights[i] = new Matrix(*other.weights[i]);
+            biases[i] = new Matrix(*other.biases[i]);
+        }
+    }
+
+    Network& operator=(const Network& other) {
+        if (this == &other) return *this;
+        delete[] layerSizes;
         for (byte i = 0; i < layerCount; i++) {
             delete weights[i];
             delete biases[i];
         }
         delete[] weights;
         delete[] biases;
+        layerCount = other.layerCount;
+        inputs = other.inputs;
+        layerSizes = new byte[layerCount];
+        weights = new Matrix*[layerCount];
+        biases = new Matrix*[layerCount];
+        for (byte i = 0; i < layerCount; i++) {
+            layerSizes[i] = other.layerSizes[i];
+            weights[i] = new Matrix(*other.weights[i]);
+            biases[i] = new Matrix(*other.biases[i]);
+        }
     }
 
     byte activate(int sum) {
