@@ -1,6 +1,8 @@
 #ifndef NEURAL_NETWORK_H
 #define NEURAL_NETWORK_H
 
+#include "../include/helper/helper.h"
+
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 using byte = uint8_t;
@@ -42,6 +44,10 @@ struct Matrix {
     sByte& operator()(byte r, byte c) {
         return data[r * columns + c];
     }
+
+    sByte* getData() {
+        return data;
+    }
 };
 
 struct Network {
@@ -50,6 +56,7 @@ struct Network {
     byte* layerSizes;
     Matrix** weights;
     Matrix** biases;
+
     
     ~Network() {
         delete[] layerSizes;
@@ -149,24 +156,110 @@ struct Network {
 
 struct Individual {
     Network* network;
+    byte species;
     byte fitness;
     Individual() {
         fitness = 0;
     }
-    Individual(Network* net) : network(net) {
+    Individual(Network* net, byte speciesId) : network(net), species(speciesId) {
         fitness = 0;
     }
     ~Individual() {
         delete network;
     }
+    void tick() {}
 };
 
 struct Population {
-    Population();
-    ~Population();
-    void crossover(Network& netOne, Network& netTwo);
-    void mutate(Network* net);
-    void selectFitness(Network* net);
+    byte speciesCount;
+    byte individualCount;
+    NetworkConfig netConfig;
+    Species** species;
+
+    Population(byte numSpecies, byte numIndividuals, NetworkConfig config) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config) {
+        species = new Species*[speciesCount];
+        byte individualIndex = 0;
+        for (byte i = 0; i < speciesCount; i++) {
+            species[i] = new Species(i, netConfig, individualCount);
+        }
+    }
+    ~Population() {
+        for (byte i = 0; i < speciesCount; i++) {
+            delete species[i];
+        }
+        delete[] species;
+    }
+
+    void crossover(Species& speciesOne, Network& speciesTwo) {
+
+    }
+    void mutate(Species passed_species);
+    void selectFitness(Species* passed_species);
+};
+
+struct Species {
+    byte id;
+    byte numIndividuals;
+    sByte* genes;
+    Network* network;
+    Individual** individuals;
+
+    Species(byte speciesId, NetworkConfig netConfig, byte individualCount) : id(speciesId), numIndividuals(individualCount) {
+        network = new Network(netConfig.inputs, netConfig.count, netConfig.sizes);
+        individuals = new Individual*[individualCount];
+        for (byte i = 0; i < individualCount; i++) {
+            individuals[i] = new Individual(network, id);
+        }
+    }
+
+    ~Species() {
+        delete network;
+        for (byte i = 0; i < numIndividuals; i++) {
+            delete individuals[i];
+        }
+        delete[] individuals;
+        delete[] genes;
+    }
+
+    sByte* readGenes() {
+        byte geneIndex = 0;
+        for (byte i = 0; i < network->layerCount; i++) {
+            for (byte j = 0; j < network->weights[i]->rows*network->weights[i]->columns; j++) {
+                genes[geneIndex] = network->weights[i]->data[j];
+                geneIndex++;
+            }
+            for (byte j = 0; j < network->biases[i]->rows*network->biases[i]->columns; j++) {
+                genes[geneIndex] = network->biases[i]->data[j];
+                geneIndex++;
+            }
+        }
+        return genes;
+    }
+};
+
+struct NetworkConfig {
+    byte inputs;
+    byte count;
+    byte* sizes;
+
+    NetworkConfig () {
+        inputs = 16;
+        count = 4;
+        sizes = new byte[4];
+        sizes[0] = 12;
+        sizes[1] = 8;
+        sizes[2] = 4;
+        sizes[3] = 8;
+    }
+
+    NetworkConfig (byte in, byte count, byte size[]) {
+        inputs = in;
+        count = count;
+        sizes = new byte[count];
+        for (byte i = 0; i < count; i++) {
+            sizes[i] = size[i];
+        }
+    }
 };
 
 #endif
