@@ -56,7 +56,6 @@ struct Network {
     byte* layerSizes;
     Matrix** weights;
     Matrix** biases;
-
     
     ~Network() {
         delete[] layerSizes;
@@ -82,7 +81,6 @@ struct Network {
             biases[i] = new Matrix(1, layerSizes[i]);
         }
     }
-
     Network(const Network& other) : inputs(other.inputs), layerCount(other.layerCount) {
         layerSizes = new byte[layerCount];
         weights = new Matrix*[layerCount];
@@ -156,72 +154,38 @@ struct Network {
 
 struct Individual {
     Network* network;
+    sByte* genes;
+    byte geneCount;
     byte species;
     byte fitness;
+
+    byte actionCount;
+    byte posX;
+    byte posY;
+
     Individual() {
         fitness = 0;
     }
-    Individual(Network* net, byte speciesId) : network(net), species(speciesId) {
+    Individual(Network* net, byte speciesId, byte numGenes) : species(speciesId), geneCount(numGenes) {
+        network = new Network(*net);
         fitness = 0;
+        actionCount = network->layerSizes[network->layerCount];
+        readGenes();
+    }
+    Individual(const Individual& other) : species(other.species), geneCount(other.geneCount) {
+        network = new Network(*other.network);
+        genes = new sByte();
+        for (byte i = 0; i < geneCount; i++) {
+            genes[i] = other.genes[i];
+        }
+        readGenes();
     }
     ~Individual() {
         delete network;
-    }
-    void tick() {}
-};
-
-struct Population {
-    byte speciesCount;
-    byte individualCount;
-    NetworkConfig netConfig;
-    Species** species;
-
-    Population(byte numSpecies, byte numIndividuals, NetworkConfig config) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config) {
-        species = new Species*[speciesCount];
-        byte individualIndex = 0;
-        for (byte i = 0; i < speciesCount; i++) {
-            species[i] = new Species(i, netConfig, individualCount);
-        }
-    }
-    ~Population() {
-        for (byte i = 0; i < speciesCount; i++) {
-            delete species[i];
-        }
-        delete[] species;
-    }
-
-    void crossover(Species& speciesOne, Network& speciesTwo) {
-
-    }
-    void mutate(Species passed_species);
-    void selectFitness(Species* passed_species);
-};
-
-struct Species {
-    byte id;
-    byte numIndividuals;
-    sByte* genes;
-    Network* network;
-    Individual** individuals;
-
-    Species(byte speciesId, NetworkConfig netConfig, byte individualCount) : id(speciesId), numIndividuals(individualCount) {
-        network = new Network(netConfig.inputs, netConfig.count, netConfig.sizes);
-        individuals = new Individual*[individualCount];
-        for (byte i = 0; i < individualCount; i++) {
-            individuals[i] = new Individual(network, id);
-        }
-    }
-
-    ~Species() {
-        delete network;
-        for (byte i = 0; i < numIndividuals; i++) {
-            delete individuals[i];
-        }
-        delete[] individuals;
         delete[] genes;
     }
 
-    sByte* readGenes() {
+    void readGenes() {
         byte geneIndex = 0;
         for (byte i = 0; i < network->layerCount; i++) {
             for (byte j = 0; j < network->weights[i]->rows*network->weights[i]->columns; j++) {
@@ -233,7 +197,156 @@ struct Species {
                 geneIndex++;
             }
         }
-        return genes;
+    }
+
+    void passGenes(sByte* passedGenes, byte mutationRate) {
+        byte geneIndex = 0;
+        for (byte i = 0; i < network->layerCount; i++) {
+            for (byte j = 0; j < network->weights[i]->rows*network->weights[i]->columns; j++) {
+                sByte mutated = mutate(passedGenes[geneIndex], mutationRate);
+                network->weights[i]->data[j] = mutated;
+                geneIndex++;
+            }
+            for (byte j = 0; j < network->biases[i]->rows*network->biases[i]->columns; j++) {
+                sByte mutated = mutate(passedGenes[geneIndex], mutationRate);
+                network->biases[i]->data[j] = mutated;
+                geneIndex++;
+            }
+        }
+        reset();
+    }
+
+    sByte mutate(sByte gene, byte mutationRate) {
+        if (rand_within(1000) < 500) {
+            gene -= mutationRate;
+        } else {
+            gene += mutationRate;
+        }
+        return gene;
+    }
+
+    
+    void tick(byte* inputs) {
+        byte* outputs = new byte[actionCount];
+        byte bestOutput = 0;
+        byte outputIndex = 0;
+        network->forward(inputs, outputs);
+        for (byte i = 0; i < actionCount; i++) {
+            if (outputs[i] > bestOutput) {
+                bestOutput = outputs[i];
+                outputIndex = i;
+            }
+        }
+        executeOutput(outputIndex);
+        delete[] outputs;
+    }
+    
+    void executeOutput(byte outputId) {}
+    void reset() {}
+};
+
+struct Species {
+    byte id;
+    byte numIndividuals;
+    byte geneCount;
+    byte mutationRate;
+    sByte* genes;
+    Network* baseNetwork;
+    Individual** individuals;
+
+    Species(byte speciesId, NetworkConfig netConfig, byte individualCount, byte mutationRange) : id(speciesId), numIndividuals(individualCount), mutationRate(mutationRange) {
+        baseNetwork = new Network(netConfig.inputs, netConfig.count, netConfig.sizes);
+        for (byte i = 0; i < baseNetwork->layerCount; i++) {
+            for (byte j = 0; j < baseNetwork->weights[i]->rows*baseNetwork->weights[i]->columns; j++) {
+                geneCount++;
+            }
+            for (byte j = 0; j < baseNetwork->biases[i]->rows*baseNetwork->biases[i]->columns; j++) {
+                geneCount++;
+            }
+        }
+        individuals = new Individual*[individualCount];
+        for (byte i = 0; i < individualCount; i++) {
+            individuals[i] = new Individual(baseNetwork, id, geneCount);
+        }
+    }
+
+    ~Species() {
+        delete baseNetwork;
+        for (byte i = 0; i < numIndividuals; i++) {
+            delete individuals[i];
+        }
+        delete[] individuals;
+        delete[] genes;
+    }
+
+    void crossover() {
+        Individual cellOne = *selectFittest(0);
+        Individual cellTwo = *selectFittest(1);
+        for (byte i = 0; i < geneCount; i++) {
+            if (rand_within(1000) < 500) {
+                genes[i] = cellOne.genes[i];
+            } else {
+                genes[i] = cellTwo.genes[i];
+            }
+        }
+        for (byte i = 0; i < numIndividuals; i++) {
+            individuals[i]->passGenes(genes, mutationRate);
+        }
+    }
+
+    Individual* selectFittest(byte position) {
+        Individual* fittest = individuals[0];
+        Individual* secondFittest = individuals[1];
+        if (position = 0) {
+            for (byte i = 0; i < numIndividuals; i++) {
+                if (individuals[i]->fitness > fittest->fitness) {
+                    fittest = individuals[i];
+                }
+            }
+            return fittest;
+        } else {
+            for (byte i = 0; i < numIndividuals; i++) {
+                if (individuals[i]->fitness > fittest->fitness) {
+                    fittest = individuals[i];
+                }
+            }
+            for (byte i = 0; i < numIndividuals; i++) {
+                if (individuals[i]->fitness < fittest->fitness && individuals[i]->fitness > secondFittest->fitness) {
+                    secondFittest = individuals[i];
+                }
+            }
+            return secondFittest;
+        }
+        delete fittest;
+        delete secondFittest;
+    }
+};
+
+struct Population {
+    byte speciesCount;
+    byte individualCount;
+    byte mutationRate;
+    NetworkConfig netConfig;
+    Species** species;
+
+    Population(byte numSpecies, byte numIndividuals, NetworkConfig config, byte muteRate) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config), mutationRate(muteRate) {
+        species = new Species*[speciesCount];
+        byte individualIndex = 0;
+        for (byte i = 0; i < speciesCount; i++) {
+            species[i] = new Species(i, netConfig, individualCount, mutationRate);
+        }
+    }
+    ~Population() {
+        for (byte i = 0; i < speciesCount; i++) {
+            delete species[i];
+        }
+        delete[] species;
+    }
+
+    void nextGeneration() {
+        for (int i = 0; i < speciesCount; i++) {
+            species[i]->crossover();
+        }
     }
 };
 
