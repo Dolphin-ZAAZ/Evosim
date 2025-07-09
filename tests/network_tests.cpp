@@ -1,3 +1,4 @@
+#include "../include/neural-network/network.h"
 
 bool isOn = true;
 

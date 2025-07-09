@@ -23,8 +23,7 @@ struct Individual {
     void readGenes() {}
     void passGenes(sByte* passedGenes, byte mutationRate) {}
     sByte mutate(sByte gene, byte mutationRate) {}
-    void tick(byte* inputs) {}
-    void executeOutput(byte outputId) {}
+    byte tick(byte* inputs) {}
     void reset() {}
 };
 

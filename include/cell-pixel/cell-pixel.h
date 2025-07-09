@@ -6,6 +6,6 @@ class CellPixel {
         CellPixel();
         ~CellPixel();
     private:
-}
+};
 
 #endif

@@ -1,3 +1,4 @@
+#include "../include/neural-network/matrix.h"
 
 bool isOn = true;
 

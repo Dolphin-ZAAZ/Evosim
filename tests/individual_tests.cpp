@@ -1,3 +1,4 @@
+#include "../include/neural-network/individual.h"
 
 bool isOn = true;
 

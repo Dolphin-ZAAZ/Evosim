@@ -65,7 +65,7 @@ sByte Individual::mutate(sByte gene, byte mutationRate) {
     return gene;
 }
 
-void Individual::tick(byte* inputs) {
+byte Individual::tick(byte* inputs) {
     byte* outputs = new byte[actionCount];
     byte bestOutput = 0;
     byte outputIndex = 0;
@@ -76,12 +76,8 @@ void Individual::tick(byte* inputs) {
             outputIndex = i;
         }
     }
-    executeOutput(outputIndex);
+    return outputIndex;
     delete[] outputs;
-}
-
-void Individual::executeOutput(byte outputId) {
-
 }
 
 void Individual::reset() {
