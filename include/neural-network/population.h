@@ -12,26 +12,10 @@ struct Population {
     NetworkConfig netConfig;
     Species** species;
 
-    Population(byte numSpecies, byte numIndividuals, NetworkConfig config, byte muteRate) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config), mutationRate(muteRate) {
-        species = new Species*[speciesCount];
-        byte individualIndex = 0;
-        for (byte i = 0; i < speciesCount; i++) {
-            species[i] = new Species(i, netConfig, individualCount, mutationRate);
-        }
-    }
-    ~Population() {
-        for (byte i = 0; i < speciesCount; i++) {
-            delete species[i];
-        }
-        delete[] species;
-    }
+    Population(byte numSpecies, byte numIndividuals, NetworkConfig config, byte muteRate) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config), mutationRate(muteRate) {}
+    ~Population() {}
 
-    void nextGeneration() {
-        for (int i = 0; i < speciesCount; i++) {
-            species[i]->crossover();
-        }
-    }
+    void nextGeneration() {}
 };
-
 
 #endif
