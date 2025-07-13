@@ -1,20 +1,16 @@
 #include "../include/neural-network/matrix.h"
+#include "../include/tests/tests.h"
 
-bool isOn = true;
-
-void setup() {
-
-}
-
-void loop() {
-
+TEST_CASE(instantiation) {
+    int size = 12;
+    Matrix matrix(4,3);
+    REQUIRE(sizeof(matrix.data) == size);
+    REQUIRE(matrix.rows*matrix.columns == size);
+    for (int i = 0; i < size; i++) {
+        REQUIRE(matrix.data[0] == 0);
+    }
 }
 
 int main() {
-    setup();
-    while (isOn) {
-        loop();
-        Sleep(1000);
-    }
-    return 0;
+    TestRunner::run_all_tests();
 }

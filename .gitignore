@@ -1,0 +1,33 @@
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Build outputs (based on your CMakeLists.txt)
+bin/
+lib/
+
+# Compiled object files
+*.o
+*.obj
+
+# Visual Studio files (if you ever use VS)
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+# MinGW specific
+*.exe
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
