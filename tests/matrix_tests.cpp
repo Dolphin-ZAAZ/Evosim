@@ -84,7 +84,7 @@ TEST_CASE(get_data) {
     END_TEST;
 }
 
-TEST_CASE(memory_leak_test) {
+TEST_CASE(memory_leak) {
     int initial_count = get_allocation_count();
     {
         Matrix matrix(4,3);
@@ -94,7 +94,26 @@ TEST_CASE(memory_leak_test) {
     END_TEST;
 }
 
+void sizeBenchmarkInfo() {
+    print_line("Benchmark Results: ");
+    Matrix matrix(16,12);
+    Matrix matrix2(12,8);
+    Matrix matrix3(8,4);
+    Matrix matrix4(4,8);
+    print("size of 16x12 matrix: ");
+    print_line(sizeof(matrix) + (matrix.rows*matrix.columns*sizeof(sByte)));
+    print("size of 12x8 matrix: ");
+    print_line(sizeof(matrix2) + (matrix2.rows*matrix2.columns*sizeof(sByte)));
+    print("size of 8x4 matrix: ");
+    print_line(sizeof(matrix3) + (matrix3.rows*matrix3.columns*sizeof(sByte)));
+    print("size of 4x8 matrix: ");
+    print_line(sizeof(matrix4) + (matrix4.rows*matrix4.columns*sizeof(sByte)));
+    print_line("");
+}
+
 int main() {
     TestRunner::run_all_tests();
+    sizeBenchmarkInfo();
     waitForExit();
+    return 1;
 }

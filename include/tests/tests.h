@@ -20,12 +20,12 @@
 
 #define REQUIRE(expression) \
     if (!(expression)) { \
-        print_concat("expression failed: ", #expression); \
+        print_concat(get_name(), "Test Requirement Failed: "); \
+        print_concat("expression: ", #expression); \
         requirements[requireCount] = false; \
         requireCount++; \
         verdict = false; \
     } else { \
-        print_concat("expression passed: ", #expression); \
         requirements[requireCount] = true; \
         requireCount++; \
     }
@@ -40,11 +40,12 @@
             failed++; \
         } \
     } \
-    print("Result: "); \
+    print_line("Requirements Result: "); \
     print(passed); \
     print(" out of "); \
     print(passed+failed); \
     print_line(" requirements passed."); \
+    print_line("");
 
 struct TestCase {
     const char* name;
@@ -74,6 +75,10 @@ class TestRunner {
         static void run_all_tests() {
             for (int i = 0; i < testAmount; i++) {
                 #ifdef DESKTOP
+                    print_line("------------");
+                    print("Running Test For: ");
+                    print_line(tests[i].name);
+                    print_line("------------");
                     try {
                         void (*func)() = tests[i].function;
                         func();
@@ -92,11 +97,13 @@ class TestRunner {
                     func();
                 #endif
             }
-            print("Final Results: ");
+            print_line("");
+            print_line("Final Results: ");
             print(passed);
             print(" out of "); 
             print(passed+failed);
             print_line(" tests passed.");
+            print_line("");
         }
 };
 

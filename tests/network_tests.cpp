@@ -1,20 +1,8 @@
 #include "../include/neural-network/network.h"
-
-bool isOn = true;
-
-void setup() {
-
-}
-
-void loop() {
-
-}
+#include "../include/tests/tests.h"
 
 int main() {
-    setup();
-    while (isOn) {
-        loop();
-        Sleep(1000);
-    }
-    return 0;
+    TestRunner::run_all_tests();
+    waitForExit();
+    return 1;
 }

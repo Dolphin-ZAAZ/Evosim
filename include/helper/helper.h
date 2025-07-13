@@ -26,12 +26,18 @@ inline int rand_within(int max_number) {
 
 template<typename T>
 inline void print(const T& anything) {
-    std::cout << anything;
+    #ifdef DESKTOP
+        std::cout << anything;
+    #else
+    #endif
 }
 
 template<typename T>
 inline void print_line(const T& anything) {
-    std::cout << anything << std::endl;
+    #ifdef DESKTOP
+        std::cout << anything << std::endl;
+    #else
+    #endif
 }
 
 inline void print_concat(const char* line, const char* line2) {
@@ -44,14 +50,18 @@ inline void print_concat(const char* line, const char* line2) {
 }
 
 inline void waitForExit() {
+    #ifdef DESKTOP
     std::string exit = "";
     while (exit != "e" && exit != "exit") {
         exit = "";
         print_line("type (e)xit and press enter to quit.");
         std::cin >> exit;
     }
+    #else
+    #endif
 }
 
+#ifdef DESKTOP
 inline void* operator new(size_t size) {
     allocation_count++;
     return malloc(size);
@@ -63,6 +73,7 @@ inline void operator delete(void* ptr) {
         free(ptr);
     }
 }
+#endif
 
 inline int get_allocation_count() {
     return allocation_count;
