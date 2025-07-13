@@ -4,16 +4,43 @@
 #include "../helper/helper.h"
 
 #define TEST_CASE(name) \
-    void test_function_##name(); \
-    static TestRegistrar registrar_##name(#name, test_function_##name); \
-    void test_function_##name() 
+    struct TestCase_##name { \
+        static const char* get_name() { return #name; } \
+        static void run(); \
+        static int requireCount; \
+        static bool requirements[1000]; \
+    }; \
+    int TestCase_##name::requireCount = 0; \
+    bool TestCase_##name::requirements[1000]; \
+    static TestRegistrar registrar_##name(#name, TestCase_##name::run); \
+    void TestCase_##name::run()
 
 #define REQUIRE(expression) \
     if (!(expression)) { \
         print_concat("expression failed: ", #expression); \
+        requirements[requireCount] = false; \
+        requireCount++; \
     } else { \
         print_concat("expression passed: ", #expression); \
+        requirements[requireCount] = true; \
+        requireCount++; \
     }
+
+#define END_TEST \
+    int passed = 0; \
+    int failed = 0; \
+    for(int i = 0; i < requireCount; i++) { \
+        if (requirements[i] == true) { \
+            passed++; \
+        } else { \
+            failed++; \
+        } \
+    } \
+    print("Result: "); \
+    print(passed); \
+    print(" out of "); \
+    print(passed+failed); \
+    print_line(" requirements passed."); 
 
 struct TestCase {
     const char* name;
@@ -26,6 +53,7 @@ class TestRunner {
     public:
         static int testAmount;
         static TestCase tests[1000];
+        static bool passed;
 
         static TestCase* getTests() {
             return tests;
@@ -44,6 +72,7 @@ class TestRunner {
                         void (*func)() = tests[i].function;
                         func();
                     } catch (const std::exception& e) {
+                        passed = false;
                         print_concat("test threw exception: ", tests[i].name);
                         print_concat("Exception: " , e.what());
                     }
@@ -56,12 +85,13 @@ class TestRunner {
 };
 
 struct TestRegistrar {
-    TestRegistrar(char* name, void (*func)()) {
+    TestRegistrar(const char* name, void (*func)()) {
         TestRunner::registerTest(name, func);
     }
 };
 
 int TestRunner::testAmount = 0;
 TestCase TestRunner::tests[1000];
+bool TestRunner::passed = false;
 
 #endif

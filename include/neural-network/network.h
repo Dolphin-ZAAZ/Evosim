@@ -9,8 +9,8 @@ struct NetworkConfig {
     byte count;
     byte* sizes;
 
-    NetworkConfig () {}
-    NetworkConfig (byte in, byte count, byte size[]) {}
+    NetworkConfig ();
+    NetworkConfig (byte in, byte count, byte size[]);
 };
 
 struct Network {
@@ -20,13 +20,13 @@ struct Network {
     Matrix** weights;
     Matrix** biases;
     
-    ~Network() {}
-    Network(byte in, byte count, byte* sizes) :  inputs(in), layerCount(count) {}
-    Network(const Network& other) : inputs(other.inputs), layerCount(other.layerCount) {}
-    Network& operator=(const Network& other) {}
+    ~Network();
+    Network(byte in, byte count, byte* sizes);
+    Network(const Network& other);
+    Network& operator=(const Network& other);
 
-    byte activate(int sum) {}
-    void forward(byte* initial_input, byte* output) {}
+    byte activate(int sum);
+    void forward(byte* initial_input, byte* output);
 };
 
 #endif

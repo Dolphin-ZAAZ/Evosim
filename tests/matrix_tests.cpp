@@ -4,13 +4,16 @@
 TEST_CASE(instantiation) {
     int size = 12;
     Matrix matrix(4,3);
-    REQUIRE(sizeof(matrix.data) == size);
+    int actualSize = matrix.columns * matrix.rows * sizeof(sByte);
+    REQUIRE(actualSize == size);
     REQUIRE(matrix.rows*matrix.columns == size);
-    for (int i = 0; i < size; i++) {
-        REQUIRE(matrix.data[0] == 0);
+    for (int i = 0; i < actualSize; i++) {
+        REQUIRE(matrix.data[i] == 0);
     }
+    END_TEST;
 }
 
 int main() {
     TestRunner::run_all_tests();
+    waitForExit();
 }

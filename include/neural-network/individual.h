@@ -15,16 +15,16 @@ struct Individual {
     byte posX;
     byte posY;
 
-    Individual() {}
-    Individual(Network* net, byte speciesId, byte numGenes) : species(speciesId), geneCount(numGenes) {}
-    Individual(const Individual& other) : species(other.species), geneCount(other.geneCount) {}
-    ~Individual() {}
+    Individual();
+    Individual(Network* net, byte speciesId, byte numGenes);
+    Individual(const Individual& other);
+    ~Individual();
 
-    void readGenes() {}
-    void passGenes(sByte* passedGenes, byte mutationRate) {}
-    sByte mutate(sByte gene, byte mutationRate) {}
-    byte tick(byte* inputs) {}
-    void reset() {}
+    void readGenes();
+    void passGenes(sByte* passedGenes, byte mutationRate);
+    sByte mutate(sByte gene, byte mutationRate);
+    byte tick(byte* inputs);
+    void reset();
 };
 
 #endif

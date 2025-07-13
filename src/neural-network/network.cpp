@@ -74,6 +74,7 @@ Network& Network::operator=(const Network& other) {
         weights[i] = new Matrix(*other.weights[i]);
         biases[i] = new Matrix(*other.biases[i]);
     }
+    return *this;
 }
 
 byte Network::activate(int sum) {

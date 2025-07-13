@@ -14,11 +14,11 @@ struct Species {
     Network* baseNetwork;
     Individual** individuals;
 
-    Species(byte speciesId, NetworkConfig netConfig, byte individualCount, byte mutationRange) : id(speciesId), numIndividuals(individualCount), mutationRate(mutationRange) {}
-    ~Species() {}
+    Species(byte speciesId, NetworkConfig netConfig, byte individualCount, byte mutationRange);
+    ~Species();
 
-    void crossover() {}
-    Individual* selectFittest(byte position) {}
+    void crossover();
+    Individual* selectFittest(byte position);
 };
 
 #endif

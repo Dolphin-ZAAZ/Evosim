@@ -12,10 +12,10 @@ struct Population {
     NetworkConfig netConfig;
     Species** species;
 
-    Population(byte numSpecies, byte numIndividuals, NetworkConfig config, byte muteRate) : speciesCount(numSpecies), individualCount(numIndividuals), netConfig(config), mutationRate(muteRate) {}
-    ~Population() {}
+    Population(byte numSpecies, byte numIndividuals, NetworkConfig config, byte muteRate);
+    ~Population();
 
-    void nextGeneration() {}
+    void nextGeneration();
 };
 
 #endif

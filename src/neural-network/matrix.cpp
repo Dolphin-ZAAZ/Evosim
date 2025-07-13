@@ -27,6 +27,7 @@ Matrix& Matrix::operator=(const Matrix& other) {
     for (byte i = 0; i < rows * columns; i++) {
         data[i] = other.data[i];
     }
+    return *this;
 }
 
 sByte& Matrix::operator()(byte r, byte c) {
