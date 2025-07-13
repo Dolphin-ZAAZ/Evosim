@@ -7,6 +7,13 @@ Matrix::Matrix(byte r, byte c) : rows(r), columns(c) {
     }
 }
 
+Matrix::Matrix(byte r, byte c, sByte* new_data) : rows(r), columns(c) {
+    data = new sByte[rows * columns];
+    for (int i = 0; i < rows * columns; i++) {
+        data[i] = new_data[i];
+    }
+}
+
 Matrix::Matrix(const Matrix& other) : rows(other.rows), columns(other.columns) {
     data = new sByte[rows*columns];
     for (short i = 0; i < rows * columns; i++) {

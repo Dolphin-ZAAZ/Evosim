@@ -10,6 +10,7 @@ struct Matrix {
 
     ~Matrix();
     Matrix(byte r, byte c);
+    Matrix(byte r, byte c, sByte* data);
     Matrix(const Matrix& other);
     Matrix& operator=(const Matrix& other);
 
