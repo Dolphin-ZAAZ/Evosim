@@ -29,7 +29,22 @@ Network::~Network() {
     delete[] biases;
 }
 
-Network::Network(byte in, byte count, byte* sizes) {
+Network::Network(NetworkConfig config) : inputs(config.inputs), layerCount(config.count) {
+    layerSizes = new byte[layerCount];
+    for (byte i = 0; i < layerCount; i++) {
+        layerSizes[i] = config.sizes[i];
+    }
+    weights = new Matrix*[layerCount];
+    biases = new Matrix*[layerCount];
+    weights[0] = new Matrix(inputs, layerSizes[0]);
+    biases[0] = new Matrix(1, layerSizes[0]);
+    for (byte i = 1; i < layerCount; i++) {
+        weights[i] = new Matrix(layerSizes[i-1], layerSizes[i]);
+        biases[i] = new Matrix(1, layerSizes[i]);
+    }
+}
+
+Network::Network(byte in, byte count, byte* sizes) : inputs(in), layerCount(count) {
     layerSizes = new byte[layerCount];
     for (byte i = 0; i < layerCount; i++) {
         layerSizes[i] = sizes[i];
@@ -44,7 +59,7 @@ Network::Network(byte in, byte count, byte* sizes) {
     }
 }
 
-Network::Network(const Network& other) {
+Network::Network(const Network& other) : inputs(other.inputs), layerCount(other.layerCount) {
     layerSizes = new byte[layerCount];
     weights = new Matrix*[layerCount];
     biases = new Matrix*[layerCount];

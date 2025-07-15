@@ -21,6 +21,7 @@ struct Network {
     Matrix** biases;
     
     ~Network();
+    Network(NetworkConfig config);
     Network(byte in, byte count, byte* sizes);
     Network(const Network& other);
     Network& operator=(const Network& other);
