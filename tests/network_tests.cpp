@@ -3,8 +3,13 @@
 
 int main() {
     TestRunner::run_all_tests();
+    sizeBenchmarkInfo();
     waitForExit();
     return 1;
+}
+
+void sizeBenchmarkInfo() {
+
 }
 
 TEST_CASE(network_config_default) {
@@ -54,7 +59,7 @@ TEST_CASE(network_config_memory_leak) {
 }
 
 TEST_CASE(network_with_config) {
-
+    
 }
 
 TEST_CASE(network_with_params) {
@@ -78,5 +83,5 @@ TEST_CASE(forward_function) {
 }
 
 TEST_CASE(network_memory_leak) {
-    
+
 }
