@@ -52,3 +52,31 @@ TEST_CASE(network_config_memory_leak) {
     REQUIRE(initial_count == final_count);
     END_TEST;
 }
+
+TEST_CASE(network_with_config) {
+
+}
+
+TEST_CASE(network_with_params) {
+
+}
+
+TEST_CASE(network_copy_constructor) {
+
+}
+
+TEST_CASE(network_assignment_ooperator) {
+
+}
+
+TEST_CASE(activation_function) {
+
+}
+
+TEST_CASE(forward_function) {
+
+}
+
+TEST_CASE(network_memory_leak) {
+    
+}

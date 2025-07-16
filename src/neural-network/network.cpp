@@ -39,8 +39,16 @@ Network::Network(NetworkConfig config) : inputs(config.inputs), layerCount(confi
     weights[0] = new Matrix(inputs, layerSizes[0]);
     biases[0] = new Matrix(1, layerSizes[0]);
     for (byte i = 1; i < layerCount; i++) {
-        weights[i] = new Matrix(layerSizes[i-1], layerSizes[i]);
-        biases[i] = new Matrix(1, layerSizes[i]);
+        sByte* newWeights = new sByte[layerSizes[i-1]*layerSizes[i]];
+        sByte* newBiases = new sByte[layerSizes[i]];
+        for (byte j = 0; j < layerSizes[i-1]*layerSizes[i]; j++) {
+            newWeights[j] = signed_rand_within(127);
+        }
+        for (byte j = 0; j < layerSizes[i]; j++) {
+            newBiases[j] = signed_rand_within(127);
+        }
+        weights[i] = new Matrix(layerSizes[i-1], layerSizes[i], newWeights);
+        biases[i] = new Matrix(1, layerSizes[i], newBiases);
     }
 }
 
@@ -54,8 +62,16 @@ Network::Network(byte in, byte count, byte* sizes) : inputs(in), layerCount(coun
     weights[0] = new Matrix(inputs, layerSizes[0]);
     biases[0] = new Matrix(1, layerSizes[0]);
     for (byte i = 1; i < layerCount; i++) {
-        weights[i] = new Matrix(layerSizes[i-1], layerSizes[i]);
-        biases[i] = new Matrix(1, layerSizes[i]);
+        sByte* newWeights = new sByte[layerSizes[i-1]*layerSizes[i]];
+        sByte* newBiases = new sByte[layerSizes[i]];
+        for (byte j = 0; j < layerSizes[i-1]*layerSizes[i]; j++) {
+            newWeights[j] = signed_rand_within(127);
+        }
+        for (byte j = 0; j < layerSizes[i]; j++) {
+            newBiases[j] = signed_rand_within(127);
+        }
+        weights[i] = new Matrix(layerSizes[i-1], layerSizes[i], newWeights);
+        biases[i] = new Matrix(1, layerSizes[i], newBiases);
     }
 }
 
