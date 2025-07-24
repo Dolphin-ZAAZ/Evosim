@@ -1,0 +1,57 @@
+[
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/matrix.cpp.o -c /home/cvisser/Evosim/src/neural-network/matrix.cpp",
+  "file": "/home/cvisser/Evosim/src/neural-network/matrix.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/individual.cpp.o -c /home/cvisser/Evosim/src/neural-network/individual.cpp",
+  "file": "/home/cvisser/Evosim/src/neural-network/individual.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/network.cpp.o -c /home/cvisser/Evosim/src/neural-network/network.cpp",
+  "file": "/home/cvisser/Evosim/src/neural-network/network.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/population.cpp.o -c /home/cvisser/Evosim/src/neural-network/population.cpp",
+  "file": "/home/cvisser/Evosim/src/neural-network/population.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/species.cpp.o -c /home/cvisser/Evosim/src/neural-network/species.cpp",
+  "file": "/home/cvisser/Evosim/src/neural-network/species.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/matrix_tests.dir/tests/matrix_tests.cpp.o -c /home/cvisser/Evosim/tests/matrix_tests.cpp",
+  "file": "/home/cvisser/Evosim/tests/matrix_tests.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/species_tests.dir/tests/species_tests.cpp.o -c /home/cvisser/Evosim/tests/species_tests.cpp",
+  "file": "/home/cvisser/Evosim/tests/species_tests.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/individual_tests.dir/tests/individual_tests.cpp.o -c /home/cvisser/Evosim/tests/individual_tests.cpp",
+  "file": "/home/cvisser/Evosim/tests/individual_tests.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/network_tests.dir/tests/network_tests.cpp.o -c /home/cvisser/Evosim/tests/network_tests.cpp",
+  "file": "/home/cvisser/Evosim/tests/network_tests.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/main.dir/src/main.cpp.o -c /home/cvisser/Evosim/src/main.cpp",
+  "file": "/home/cvisser/Evosim/src/main.cpp"
+},
+{
+  "directory": "/home/cvisser/Evosim/build",
+  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/population_tests.dir/tests/population_tests.cpp.o -c /home/cvisser/Evosim/tests/population_tests.cpp",
+  "file": "/home/cvisser/Evosim/tests/population_tests.cpp"
+}
+]

@@ -24,6 +24,18 @@ inline int rand_within(int max_number) {
     return rand() % max_number;
 }
 
+inline int signed_rand() {
+    int random = rand();
+    if (rand()%2 != 0) {
+        random = -random;
+    }
+    return random;
+}
+
+inline int signed_rand_within(int max_number) {
+    return signed_rand() % max_number;
+}
+
 template<typename T>
 inline void print(const T& anything) {
     #ifdef DESKTOP

@@ -3,8 +3,13 @@
 
 int main() {
     TestRunner::run_all_tests();
+    sizeBenchmarkInfo();
     waitForExit();
     return 1;
+}
+
+void sizeBenchmarkInfo() {
+
 }
 
 TEST_CASE(network_config_default) {
@@ -53,4 +58,32 @@ TEST_CASE(network_config_memory_leak) {
     int final_count = get_allocation_count();
     REQUIRE(initial_count == final_count);
     END_TEST;
+}
+
+TEST_CASE(network_with_config) {
+    
+}
+
+TEST_CASE(network_with_params) {
+
+}
+
+TEST_CASE(network_copy_constructor) {
+
+}
+
+TEST_CASE(network_assignment_ooperator) {
+
+}
+
+TEST_CASE(activation_function) {
+
+}
+
+TEST_CASE(forward_function) {
+
+}
+
+TEST_CASE(network_memory_leak) {
+
 }
