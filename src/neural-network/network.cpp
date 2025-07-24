@@ -10,9 +10,9 @@ NetworkConfig::NetworkConfig() {
     sizes[3] = 8;
 }
 
-NetworkConfig::NetworkConfig(byte in, byte count, byte size[]) {
+NetworkConfig::NetworkConfig(byte in, byte num, byte size[]) {
     inputs = in;
-    count = count;
+    count = num;
     sizes = new byte[count];
     for (byte i = 0; i < count; i++) {
         sizes[i] = size[i];

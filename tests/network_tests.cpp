@@ -23,9 +23,11 @@ TEST_CASE(network_config_params) {
     NetworkConfig* netCon = new NetworkConfig(3,3, sizes);
     byte sizes2[4] = {3,4,5,4};
     NetworkConfig* netCon2 = new NetworkConfig(3,4, sizes2);
-    byte sizes3[5] = {5,4,3,2};
+    byte sizes3[5] = {5,4,3,2,3};
     NetworkConfig* netCon3 = new NetworkConfig(5,5, sizes3);
     REQUIRE(netCon->count == 3);
+    const int count = netCon->count;
+    print(count);
     REQUIRE(netCon->inputs == 3);
     for (int i = 0; i < 3; i++) {
         REQUIRE(netCon->sizes[i] == sizes[i]);
