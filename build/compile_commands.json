@@ -1,57 +1,68 @@
 [
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/matrix.cpp.o -c /home/cvisser/Evosim/src/neural-network/matrix.cpp",
-  "file": "/home/cvisser/Evosim/src/neural-network/matrix.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/neural_network.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\neural_network.dir\\src\\neural-network\\matrix.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\neural-network\\matrix.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/neural-network/matrix.cpp",
+  "output": "CMakeFiles/neural_network.dir/src/neural-network/matrix.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/individual.cpp.o -c /home/cvisser/Evosim/src/neural-network/individual.cpp",
-  "file": "/home/cvisser/Evosim/src/neural-network/individual.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/neural_network.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\neural_network.dir\\src\\neural-network\\individual.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\neural-network\\individual.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/neural-network/individual.cpp",
+  "output": "CMakeFiles/neural_network.dir/src/neural-network/individual.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/network.cpp.o -c /home/cvisser/Evosim/src/neural-network/network.cpp",
-  "file": "/home/cvisser/Evosim/src/neural-network/network.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/neural_network.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\neural_network.dir\\src\\neural-network\\network.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\neural-network\\network.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/neural-network/network.cpp",
+  "output": "CMakeFiles/neural_network.dir/src/neural-network/network.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/population.cpp.o -c /home/cvisser/Evosim/src/neural-network/population.cpp",
-  "file": "/home/cvisser/Evosim/src/neural-network/population.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/neural_network.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\neural_network.dir\\src\\neural-network\\population.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\neural-network\\population.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/neural-network/population.cpp",
+  "output": "CMakeFiles/neural_network.dir/src/neural-network/population.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/neural_network.dir/src/neural-network/species.cpp.o -c /home/cvisser/Evosim/src/neural-network/species.cpp",
-  "file": "/home/cvisser/Evosim/src/neural-network/species.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/neural_network.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\neural_network.dir\\src\\neural-network\\species.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\neural-network\\species.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/neural-network/species.cpp",
+  "output": "CMakeFiles/neural_network.dir/src/neural-network/species.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/matrix_tests.dir/tests/matrix_tests.cpp.o -c /home/cvisser/Evosim/tests/matrix_tests.cpp",
-  "file": "/home/cvisser/Evosim/tests/matrix_tests.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/matrix_tests.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\matrix_tests.dir\\tests\\matrix_tests.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\tests\\matrix_tests.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/tests/matrix_tests.cpp",
+  "output": "CMakeFiles/matrix_tests.dir/tests/matrix_tests.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/species_tests.dir/tests/species_tests.cpp.o -c /home/cvisser/Evosim/tests/species_tests.cpp",
-  "file": "/home/cvisser/Evosim/tests/species_tests.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/individual_tests.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\individual_tests.dir\\tests\\individual_tests.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\tests\\individual_tests.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/tests/individual_tests.cpp",
+  "output": "CMakeFiles/individual_tests.dir/tests/individual_tests.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/individual_tests.dir/tests/individual_tests.cpp.o -c /home/cvisser/Evosim/tests/individual_tests.cpp",
-  "file": "/home/cvisser/Evosim/tests/individual_tests.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/network_tests.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\network_tests.dir\\tests\\network_tests.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\tests\\network_tests.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/tests/network_tests.cpp",
+  "output": "CMakeFiles/network_tests.dir/tests/network_tests.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/network_tests.dir/tests/network_tests.cpp.o -c /home/cvisser/Evosim/tests/network_tests.cpp",
-  "file": "/home/cvisser/Evosim/tests/network_tests.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/population_tests.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\population_tests.dir\\tests\\population_tests.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\tests\\population_tests.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/tests/population_tests.cpp",
+  "output": "CMakeFiles/population_tests.dir/tests/population_tests.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/main.dir/src/main.cpp.o -c /home/cvisser/Evosim/src/main.cpp",
-  "file": "/home/cvisser/Evosim/src/main.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/species_tests.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\species_tests.dir\\tests\\species_tests.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\tests\\species_tests.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/tests/species_tests.cpp",
+  "output": "CMakeFiles/species_tests.dir/tests/species_tests.cpp.obj"
 },
 {
-  "directory": "/home/cvisser/Evosim/build",
-  "command": "/usr/bin/g++   -I/home/cvisser/Evosim/include  -g   -std=gnu++17 -o CMakeFiles/population_tests.dir/tests/population_tests.cpp.o -c /home/cvisser/Evosim/tests/population_tests.cpp",
-  "file": "/home/cvisser/Evosim/tests/population_tests.cpp"
+  "directory": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/build",
+  "command": "C:\\ProgramData\\mingw64\\mingw64\\bin\\g++.exe  @CMakeFiles/main.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c \"C:\\Users\\shopp\\OneDrive\\Desktop\\Personal\\Low Level Projects\\Evosim\\src\\main.cpp\"",
+  "file": "C:/Users/shopp/OneDrive/Desktop/Personal/Low Level Projects/Evosim/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.obj"
 }
 ]

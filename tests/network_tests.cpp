@@ -1,6 +1,8 @@
 #include "../include/neural-network/network.h"
 #include "../include/tests/tests.h"
 
+void sizeBenchmarkInfo();
+
 int main() {
     TestRunner::run_all_tests();
     sizeBenchmarkInfo();
